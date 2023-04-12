@@ -1,0 +1,6 @@
+[
+    {"nombre": "Lucia", "apellido": "Lopez", "edad": 24, "salario": 200000, "capital": 32000, "cuotas": 12, "id": 1},
+    {"nombre": "Marcos", "apellido": "Gonzalez", "edad": 35, "salario": 400000, "capital": 52000, "cuotas": 24, "id": 2},
+    {"nombre": "Felipe", "apellido": "Diaz", "edad": 53, "salario": 320000, "capital": 42000, "cuotas": 36, "id": 3}
+]
+
