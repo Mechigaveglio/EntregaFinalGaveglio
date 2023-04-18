@@ -12,6 +12,8 @@ class Cliente {
     }
 }
 
+
+
 // Mensaje de bienvenida  con libreria
 const button = document.getElementById("button") 
 
@@ -25,6 +27,10 @@ button.addEventListener("click",function(){
     })
     
 });
+
+
+
+
 
 // Variables 
 
@@ -55,6 +61,8 @@ let form = document.querySelector('.formulario-datos')
         clienteVip ? Swal.fire ('Ud. puede ser cliente Vip, consultenos') 
       
         : Swal.fire ("consulte nuestros beneficios especiales")
+
+
 
 
     })
@@ -124,8 +132,9 @@ const prestamo = ( array ) => {
         `
     })
     contenedor.innerHTML = simulacion
-}
 
+
+}
 
 calcularPrestamoCliente.onsubmit = ( evento ) => {
     evento.preventDefault()
@@ -163,19 +172,61 @@ calcularPrestamoCliente.onsubmit = ( evento ) => {
         localStorage.setItem("datosNuevoCliente", JSON.stringify(nuevoCliente))
         console.log(nuevoCliente)
 
-    
-        let datosAlmacenadosNuevoCliente = localStorage.getItem('datosNuevoCliente');
+
+        // let datosAlmacenadosNuevoCliente = JSON.parse(localStorage.getItem('datosNuevoCliente'))
+
         
-        if (datosAlmacenadosNuevoCliente != null) {
-        let array = JSON.parse(datosAlmacenadosNuevoCliente);
+        // if (datosAlmacenadosNuevoCliente != null) {
+        // let array = JSON.parse(datosAlmacenadosNuevoCliente);
 
-            array.forEach(nuevoCliente => { nuevoCliente.capital += (-2000)});
-            localStorage.setItem('datosNuevoCliente', JSON.stringify(array));
-            console.log(array)
-        }
+        //     array.forEach(nuevoCliente => { nuevoCliente.capital += (+1000)});
+        //     localStorage.setItem('datosNuevoCliente', JSON.stringify(array));
+        //     console.log(array)
 
+        //     }
+
+    
+            
+            
     }
-}     
+}   
+const prestamos = JSON.parse(localStorage.getItem("datosNuevoCliente")) || [];
+
+    if (prestamos.length > 0) {
+	mostrarPrestamos(prestamos);
+}
+
+    const mostrarPrestamos = (array) => {
+	const contenedor = document.querySelector(".informacion-prestamo");
+	let simulacion = "";
+	array.forEach((prestamo) => {
+		simulacion += `
+	<div class= "informacion">
+	<p>
+	nombre: ${prestamo.nombre}
+	</p>
+	<p>
+	apellido: ${prestamo.apellido}
+	</p>
+	<p>
+	salario: ${prestamo.salario}
+	</p>
+	<p>
+	capital: ${prestamo.capital}
+	</p>
+	<p>
+	cuotas: ${prestamo.cuotas}
+	</p>
+	<hr/>
+	</div>
+	`;
+	});
+	contenedor.innerHTML = simulacion;
+
+
+};
+
+
 
                 // fetch
 
@@ -197,7 +248,6 @@ calcularPrestamoCliente.onsubmit = ( evento ) => {
                     clientesFetch.forEach((cliente) => {
                     const div = document.createElement('div')
                     div.innerHTML = ` <br>
-
                         <td>Cliente: ${cliente.id},</td>
                         <td>Nombre: ${cliente.nombre},</td>
                         <td>Apellido: ${cliente.apellido},</td>
@@ -301,6 +351,19 @@ calcularPrestamoCliente.onsubmit = ( evento ) => {
                                     
                     document.body.appendChild(btn5);
                     
+         
+                
+
+                  
+         
+                    
+
+
+
+               
+
+                
+                
          
                 
 
