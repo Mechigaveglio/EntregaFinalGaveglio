@@ -206,6 +206,50 @@ btn7.id = 'btn7';
 btn7.innerHTML = 'Mostrar montos solicitados ';
 
 btn7.addEventListener('click', function () {
+    const prestamos = JSON.parse(localStorage.getItem("datosNuevoCliente")) || [];
+
+if (prestamos.length > 0) {
+	mostrarPrestamos(prestamos);
+}         
+                     
+});
+document.body.appendChild(btn7);
+
+
+const btn9 = document.createElement("button");
+
+btn9.id = 'btn9';
+
+btn9.innerHTML = 'Mostrar montos mayores a 50000 ';
+
+btn9.addEventListener('click', function () {
+    const prestamos = JSON.parse(localStorage.getItem("datosNuevoCliente")) || [];
+
+if (prestamos.length > 0) {
+	filtrarPrestamos(prestamos);
+}         
+                     
+});
+    
+document.body.appendChild(btn9);
+
+
+
+const btn10 = document.createElement("button");
+
+btn10.id = 'btn10';
+
+btn10.innerHTML = 'Mostrar montos ordenados de menor a mayor ';
+
+btn10.addEventListener('click', function () {
+    const prestamos = JSON.parse(localStorage.getItem("datosNuevoCliente")) || [];
+
+if (prestamos.length > 0) {
+	ordenarPrestamos(prestamos);
+}         
+                     
+});
+document.body.appendChild(btn10);
 
     const mostrarPrestamos = (array) => {
 	const contenedor = document.querySelector(".informacion-prestamo");
@@ -230,21 +274,61 @@ btn7.addEventListener('click', function () {
 	`;
 	});
 	contenedor.innerHTML = simulacion;
-};
-
-const prestamos = JSON.parse(localStorage.getItem("datosNuevoCliente")) || [];
-
-if (prestamos.length > 0) {
-	mostrarPrestamos(prestamos);
 }
 
+const filtrarPrestamos = (array) => {
+    const prestamosfiltrados =array.filter((prestamo)=>prestamo.capital> 50000)
+	const contenedor = document.querySelector(".informacion-prestamo");
+	let simulacion = "";
+	prestamosfiltrados.forEach((prestamo) => {
+		simulacion += `
+	<div class= "informacion">
+	<p><br>
+	Nombre : ${prestamo.nombre}
+	</p>
+	<p>
+	Apellido: ${prestamo.apellido}
+	</p>
+	<p>
+	Capital: ${(prestamo.capital).toLocaleString()}
+	</p>
+	<p>
+	Cuotas: ${(prestamo.cuotas).toLocaleString()}
+	</p>
+	<hr/>
+	</div>
+	`;
+	});
+	contenedor.innerHTML = simulacion;
+};
 
-            
-                     
-});
 
-    
-document.body.appendChild(btn7);
+const ordenarPrestamos = (array) => {
+    const prestamosOrdenados =array.sort((prestamo1, prestamo2)=>prestamo1.capital-prestamo2.capital)
+	const contenedor = document.querySelector(".informacion-prestamo");
+	let simulacion = "";
+	prestamosOrdenados.forEach((prestamo) => {
+		simulacion += `
+	<div class= "informacion">
+	<p><br>
+	Nombre : ${prestamo.nombre}
+	</p>
+	<p>
+	Apellido: ${prestamo.apellido}
+	</p>
+	<p>
+	Capital: ${(prestamo.capital).toLocaleString()}
+	</p>
+	<p>
+	Cuotas: ${(prestamo.cuotas).toLocaleString()}
+	</p>
+	<hr/>
+	</div>
+	`;
+	});
+	contenedor.innerHTML = simulacion;
+};
+
 
 
                 // fetch
@@ -265,7 +349,7 @@ document.body.appendChild(btn7);
 
                     
                 let h4 = document.createElement("h4");
-                h4.innerHTML = `<h4><br> Clientes contentos que obtuvieron su prestamo al instante:</h4>`;
+                h4.innerHTML = `<h4><br> Clientes que obtuvieron su prestamo al instante:</h4>`;
                 document.body.appendChild(h4);
 
                 setTimeout(() => {
@@ -303,37 +387,6 @@ document.body.appendChild(btn7);
                 document.body.appendChild(btn8);
 
 
-            // Metodos para trabajar datos tomados con fetch
-
-    
-
-            // (fetch('data.json'))
-            //         .then(res=> res.json())
-            //         .then ((clientesFetch) => {
-            //             const buscarCapitalmenora400000 = clientesFetch.filter((buscarCapitalmenora400000) => buscarCapitalmenora400000.capital < 40000)
-            
-            //              console.log(buscarCapitalmenora400000)
-
-            //             const datosClientesFetchActualizado = clientesFetch.map((datosClientesFetchActualizado) => {
-            //                     return {
-            //                         nombre: datosClientesFetchActualizado.nombre,
-            //                         apellido: datosClientesFetchActualizado.apellido.toUpperCase(),
-            //                         edad: datosClientesFetchActualizado.edad,
-            //                         salario: datosClientesFetchActualizado.salario,
-            //                         capital: datosClientesFetchActualizado.capital,
-            //                         cuotas: datosClientesFetchActualizado.cuotas 
-            //                     }
-            //                 })
-            //                 console.log(datosClientesFetchActualizado) 
-
-            //                 const buscarSalarioalto= clientesFetch.find((buscarSalarioalto)=> buscarSalarioalto.salario >= 400000)
-            //                 console.log(buscarSalarioalto)    
-                    
-            
-            //         })
-
-  
-                    
 
                 // // Nombre y mail de clientes ganadores con async await desde API
 
